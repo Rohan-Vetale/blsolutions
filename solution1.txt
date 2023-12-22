@@ -1,6 +1,6 @@
 1. Can be Skipped
 
-2.Move files from current folder to a respective folder
+2. Move files from current folder to a respective folder
 	a) touch abc.txt def.txt ghi.txt jkl.txt
 	b) ls *.txt
 	c) ls *.txt | awk -F . '{print $1}'
@@ -19,3 +19,11 @@
 			mv $file $folderName/$file
 		done
 
+
+9. Create a folder if it does not exists
+	a) if [ -d $folderName ]
+	    fi
+	b) if [! -d $folderName ]
+	   then
+	   mkdir $folderName
+	   fi
