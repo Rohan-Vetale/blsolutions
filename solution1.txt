@@ -1,0 +1,21 @@
+1. First problem is out of syllabus as of now
+
+2.Move files from current folder to a respective folder
+	a) touch abc.txt def.txt ghi.txt jkl.txt
+	b) ls *.txt
+	c) ls *.txt | awk -F . '{print $1}'
+	d) 
+		for files in *.txt
+			do
+				folderName=`echo $files | awk -F. '{print $1}'`;
+				mkdir $folderName;
+			done
+	e) mv $fileName $folderName/$fileName
+	f) for file in *.txt
+		do
+			ls *.txt
+			folderName=`echo $file | awk -F . '{print $1}'`
+			mkdir $folderName
+			mv $file $folderName/$file
+		done
+
