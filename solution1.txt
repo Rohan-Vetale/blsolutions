@@ -1,29 +1,82 @@
-1. Can be Skipped
+1. Not possible
 
-2. Move files from current folder to a respective folder
-	a) touch abc.txt def.txt ghi.txt jkl.txt
-	b) ls *.txt
-	c) ls *.txt | awk -F . '{print $1}'
-	d) 
-		for files in *.txt
-			do
-				folderName=`echo $files | awk -F. '{print $1}'`;
-				mkdir $folderName;
-			done
-	e) mv $fileName $folderName/$fileName
-	f) for file in *.txt
-		do
-			ls *.txt
-			folderName=`echo $file | awk -F . '{print $1}'`
-			mkdir $folderName
-			mv $file $folderName/$file
-		done
+2.  Move files from one folder to the respective folders. 
+a. touch abc.txt def.txt ghi.txt jkl.txt
+   b. ls *.txt
+   c. ls *.txt | awk -F . '{print $1}'
+   d. for file in `ls *.txt`
+      do
+	  folderName=`echo $file | awk -F . '{print $1}'`
+	  mkdir $folderName
+      done
+   e. mv $file $folderName
+   f. for file in `ls *.txt`
+      do
+        folderName=`echo $file | awk -F . '{print $1}'`
+        mkdir $folderName
+	mv $file $folderName
+      done
+
+3. Append current date to all log files name which has extension .log.1 from a folder 
+
+a. touch abc.log.1 def.log.1 ghi.log.1 jkl.log.1 mno.log.1
+   b. ls *.log.1
+   c. ls *.log.1 | awk -F . '{print $1}'
+   d. date '+%d%m%Y'
+   e. $fileName'-'`date '+%d%m%Y'`'.log'
+   f. for file in `ls *.log.1`; 
+      do 
+        fileName=`echo $file | awk -F . '{print $1}'`;
+        d=`date '+%d%m%Y'`;
+        mv $file $fileName'-'$d'.log';
+      done
+
+4. Archive the files from /var/log folder which have modified 7 days ago and move it
+to your backup folder 
+
+a. find -mtime +7
+   b. mkdir backup
+      for file in `find -mtime +7`
+      do
+        mv $file backup
+      done
 
 
-9. Create a folder if it does not exists
-	a) if [ -d $folderName ]
-	    fi
-	b) if [! -d $folderName ]
-	   then
-	   mkdir $folderName
-	   fi
+9. Check if a folder exists or not. If it's not present, create it 
+a. if [ -d $folderName]
+      fi
+   b. if [ -d $folderName]
+      then
+	 echo "file already exists"
+      else
+	 mkdir $folderName
+      fi
+
+10. Execute command "hello” and “Is” and check its execution status and print whether command executed successful or not. 
+
+a. hello 
+    b. -bash: hello: command not found
+    c. ls
+    d. successfully executes by printing all the files and directories present in current working directory
+
+11. Set environment usersecret="dH34xJaa23" if its already not set 
+a. echo $usersecret
+    b. no output so the variable does not exist
+    c. # export usersecret = "dH34xJaa23"
+
+12.  Find a word “systemd” from all log files in the folder /var/log and print number of occurrence more than 0 against each file
+
+for file in `ls`
+    do
+    freq=`grep -o -i systemd $file | wc -l`
+    if[ $freq -gt 0 ]
+    then
+      echo $file
+    done
+
+13. Create process list table displays process id, parent process id, command name, % of memory consumption, % of cpu utilization 
+
+14. i.   cat data.csv | awk '{ if($4>10000) {print $2 " " $7} }'
+    ii.  cat data.csv | grep CAPTAIN | awk '{ sum+=$4 }END{ print sum }'
+    iii. cat data.csv | awk '{ if($5 >= 7000 && $5 <= 10000) {print $3 " " $5} }'
+    iv.  cat data.csv | awk '{ sum+=$4 }END{ print sum/NR }'
