@@ -2,7 +2,7 @@ def reverStr(str1):
 	outputStr = ""
 	for char in str1:
 		outputStr = char + outputStr
-		print(char)
+		
 	return outputStr
 
 #assuming a static input
