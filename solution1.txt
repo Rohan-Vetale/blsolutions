@@ -69,7 +69,7 @@ a. echo $usersecret
 for file in `ls`
     do
     freq=`grep -o -i systemd $file | wc -l`
-    if[ $freq -gt 0 ]
+    if [ $freq -gt 0 ]
     then
       echo $file
     done
@@ -77,6 +77,6 @@ for file in `ls`
 13. Create process list table displays process id, parent process id, command name, % of memory consumption, % of cpu utilization 
 
 14. i.   cat data.csv | awk '{ if($4>10000) {print $2 " " $7} }'
-    ii.  cat data.csv | grep CAPTAIN | awk '{ sum+=$4 }END{ print sum }'
+    ii.  cat data.csv | grep CAPTAIN | awk '{ sum+=$7 }END{ print sum }'
     iii. cat data.csv | awk '{ if($5 >= 7000 && $5 <= 10000) {print $3 " " $5} }'
     iv.  cat data.csv | awk '{ sum+=$4 }END{ print sum/NR }'
